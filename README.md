@@ -1,15 +1,3 @@
-# urbanforestry
----
-title: "README"
-author: "Sarah Hughes"
-date: "2024-05-05"
-output: html_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 # Introduction
 
 In Los Angeles County alone, there are over 6,000,000 trees, making them a crucial component of the local ecosystem and infrastructure. Given the challenges posed by climate change, drought, and natural disasters, particularly for vulnerable populations, understanding and monitoring tree health is increasingly important. Trees play a significant role in mitigating these challenges by cooling neighborhoods, improving air and water quality, and enhancing community well-being. However, the rate of tree mortality surpasses the pace of replacement, necessitating effective monitoring strategies.
