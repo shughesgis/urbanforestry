@@ -90,7 +90,7 @@ var ndvi = function(image) {
 // Map NDVI function over cloud masked s2
 var s2CloudsND = s2noClouds.map(ndvi); 
 ```
-[Composite image of mean NDVI across the study area, with Altadena outlined in black](/ndvi.png)
+![Composite image of mean NDVI across the study area, with Altadena outlined in black](/ndvi.png)
 
 6.	After calculating NDVI, the imagery is clipped to only the Quercus agrifolia tree crowns. 
 
@@ -256,7 +256,7 @@ mergedChart.setOptions({
 });
 ```
 
-[Example of chart generated in Google Earth Engine app when user clicks on an oak crown](/ee-chart(6).png)
+![Example of chart generated in Google Earth Engine app when user clicks on an oak crown](/ee-chart(6).png)
 
 
 ## Python
@@ -366,7 +366,7 @@ fig1.set_size_inches(1920/80, 1080/80)  # Assuming a screen resolution of 1920x1
 # save figure to working directory (dpi parameter relates to image quality, 300+ recommended)
 fig1.savefig(file_path + species_for_files + '_CI_With_Points.png', dpi=300)
 ```
-[Orange points represent NDVI for each oak crown on each date, and blue area represents 95% confidence interval for the 30-day rolling mean](/Quercus_agrifolia_CI_With_Points(1).png)
+![Orange points represent NDVI for each oak crown on each date, and blue area represents 95% confidence interval for the 30-day rolling mean](/Quercus_agrifolia_CI_With_Points(1).png)
 
 10.	The confidence interval and rolling mean were plotted without the points for individual tree crowns, and the plot was exported to the working directory.
 
@@ -386,7 +386,7 @@ fig2.set_size_inches(1920/80, 1080/80)  # Assuming a screen resolution of 1920x1
 # save figure to working directory
 fig2.savefig(file_path + species_for_files + '_CI_Without_Points.png', dpi=300)
 ```
-[95% confidence interval for the 30-day rolling mean](/Quercus_agrifolia_CI_Without_Points(1).png)
+![95% confidence interval for the 30-day rolling mean](/Quercus_agrifolia_CI_Without_Points(1).png)
 
 11.	The mean NDVI for each tree was calculated, and a figure with a boxplot showing NDVI values for each tree, with tree ID on the x-axis, was created. The x-axis was sorted from the smallest mean NDVI to the largest mean NDVI, and the plot was exported to the working directory.
 
@@ -418,7 +418,7 @@ fig3.set_size_inches(1920/80, 1080/80)  # Assuming a screen resolution of 1920x1
 # save figure to working directory
 fig3.savefig(file_path + species_for_files + '_Boxplot', dpi=300)
 ```
-[Boxplot of NDVI values across study period for each oak crown](/Quercus_agrifolia_Boxplot(1).png)
+![Boxplot of NDVI values across study period for each oak crown](/Quercus_agrifolia_Boxplot(1).png)
 
 12.	Using a for loop, trees with NDVI drops above the specified threshold were identified. From the table with all tree crowns, only the identified trees were selected, and a new table was created from this selection. The new table was exported to the working directory. 
 
@@ -475,7 +475,7 @@ fig4.set_size_inches(1920/80, 1080/80)  # Assuming a screen resolution of 1920x1
 # export figure to working directory
 fig4.savefig(file_path + species_for_files + '_means_CI.png', dpi=300)
 ```
-[B95% confidence interval for daily mean NDVI across all oak crowns, with each point representing a daily mean](/Quercus_agrifolia_means_CI(1).png)
+![95% confidence interval for daily mean NDVI across all oak crowns, with each point representing a daily mean](/Quercus_agrifolia_means_CI(1).png)
 
 
 # Implementation
