@@ -132,7 +132,7 @@ Export.table.toDrive({
 oakCrowns = oakCrowns.filter('MSK_CLDPRB <= 5');
 Map.addLayer(oakCrowns, {color: 'white'}, 'Oak Crowns');
 ```
-[Quercus agrifolia crowns within Altadena are shown in white, with Altadena outlined in yellow](/crowns.png)
+![Quercus agrifolia crowns within Altadena are shown in white, with Altadena outlined in yellow](/crowns.png)
 
 9.	Next, a new table is created with the average NDVI across all Quercus agrifolia crowns for each date. This is done by first generating a list of each unique date in the table, then creating a function which calculates the mean NDVI for a specific date and returns it as a feature (with null geometry). This function is mapped across the list of all dates in the table previously generated, creating the new table. 
 
@@ -256,7 +256,7 @@ mergedChart.setOptions({
 });
 ```
 
-![Example of chart generated in Google Earth Engine app when user clicks on an oak crown](/ee-chart(6).png)
+![Example of chart generated in Google Earth Engine app when user clicks on an oak crown](/ex_chart.png)
 
 
 ## Python
@@ -366,7 +366,7 @@ fig1.set_size_inches(1920/80, 1080/80)  # Assuming a screen resolution of 1920x1
 # save figure to working directory (dpi parameter relates to image quality, 300+ recommended)
 fig1.savefig(file_path + species_for_files + '_CI_With_Points.png', dpi=300)
 ```
-![Orange points represent NDVI for each oak crown on each date, and blue area represents 95% confidence interval for the 30-day rolling mean](/Quercus_agrifolia_CI_With_Points(1).png)
+![Orange points represent NDVI for each oak crown on each date, and blue area represents 95% confidence interval for the 30-day rolling mean](/Quercus_agrifolia_CI_Points.png)
 
 10.	The confidence interval and rolling mean were plotted without the points for individual tree crowns, and the plot was exported to the working directory.
 
@@ -386,7 +386,7 @@ fig2.set_size_inches(1920/80, 1080/80)  # Assuming a screen resolution of 1920x1
 # save figure to working directory
 fig2.savefig(file_path + species_for_files + '_CI_Without_Points.png', dpi=300)
 ```
-![95% confidence interval for the 30-day rolling mean](/Quercus_agrifolia_CI_Without_Points(1).png)
+![95% confidence interval for the 30-day rolling mean](/Quercus_agrifolia_CI_no_points.png)
 
 11.	The mean NDVI for each tree was calculated, and a figure with a boxplot showing NDVI values for each tree, with tree ID on the x-axis, was created. The x-axis was sorted from the smallest mean NDVI to the largest mean NDVI, and the plot was exported to the working directory.
 
@@ -418,7 +418,7 @@ fig3.set_size_inches(1920/80, 1080/80)  # Assuming a screen resolution of 1920x1
 # save figure to working directory
 fig3.savefig(file_path + species_for_files + '_Boxplot', dpi=300)
 ```
-![Boxplot of NDVI values across study period for each oak crown](/Quercus_agrifolia_Boxplot(1).png)
+![Boxplot of NDVI values across study period for each oak crown](/Quercus_agrifolia_box.png)
 
 12.	Using a for loop, trees with NDVI drops above the specified threshold were identified. From the table with all tree crowns, only the identified trees were selected, and a new table was created from this selection. The new table was exported to the working directory. 
 
@@ -475,7 +475,7 @@ fig4.set_size_inches(1920/80, 1080/80)  # Assuming a screen resolution of 1920x1
 # export figure to working directory
 fig4.savefig(file_path + species_for_files + '_means_CI.png', dpi=300)
 ```
-![95% confidence interval for daily mean NDVI across all oak crowns, with each point representing a daily mean](/Quercus_agrifolia_means_CI(1).png)
+![95% confidence interval for daily mean NDVI across all oak crowns, with each point representing a daily mean](/Quercus_agrifolia_means.png)
 
 
 # Implementation
@@ -484,80 +484,128 @@ The interactive application runs on the computational power of Google Earth Engi
 
 # Known Issues
 
-•	If a user clicks on a tree that is not Quercus agrifolia, or a point that is not a tree, an error will come up in the place of the NDVI chart.
-•	Each time the user clicks on the map, the Quercus agrifolia crowns and Altadena neighborhood boundary will be added to the map again. All layers on the map can be reset by clicking on the “Reset all layers” button. 
-•	Occasionally, the app will produce a ‘JSON’ error message when it is initially loaded. Reloading the page should fix this error. 
+- If a user clicks on a tree that is not Quercus agrifolia, or a point that is not a tree, an error will come up in the place of the NDVI chart.
+- Each time the user clicks on the map, the Quercus agrifolia crowns and Altadena neighborhood boundary will be added to the map again. All layers on the map can be reset by clicking on the “Reset all layers” button.
+- Occasionally, the app will produce a ‘JSON’ error message when it is initially loaded. Reloading the page should fix this error. 
 
 # Benefits and Applications
 
 This GEE application offers numerous benefits, including:
 
-•	Enhanced Monitoring and Management: Facilitates the monitoring of urban tree health and biodiversity, enabling more informed management decisions.
-•	Educational Tool: Serves as an educational resource for schools and the public, raising awareness of the importance of urban forests.
-•	Research and Development: Provides a valuable dataset for academic research on urban ecology and urban planning.
-•	Policy and Planning: Assists policymakers in developing strategies for urban forest expansion, maintenance, and sustainability.
+- Enhanced Monitoring and Management: Facilitates the monitoring of urban tree health and biodiversity, enabling more informed management decisions.
+- Educational Tool: Serves as an educational resource for schools and the public, raising awareness of the importance of urban forests.
+- Research and Development: Provides a valuable dataset for academic research on urban ecology and urban planning.
+- Policy and Planning: Assists policymakers in developing strategies for urban forest expansion, maintenance, and sustainability.
 Implementing the code in Python will provide the user with additional information and visualizations, including:
-•	Rolling mean NDVI across all crowns and 95% confidence interval for rolling mean
-•	Time series showing all individual crowns
-•	Time series showing 95% confidence interval for rolling mean and identifying high and low outliers
-•	Table with a subset of vulnerable crowns, identified based on decreasing NDVI
+- Rolling mean NDVI across all crowns and 95% confidence interval for rolling mean
+- Time series showing all individual crowns
+- Time series showing 95% confidence interval for rolling mean and identifying high and low outliers
+- Table with a subset of vulnerable crowns, identified based on decreasing NDVI
 
 # Acknowledgements
 This workflow was developed by Dr. Jonathan Pando Ocón, Assistant Professor of Remote Sensing, CSU Long Beach, with Mr. Corey DeLisle, Geography, UCLA, contributing to field work and data processing, and Ms. Kristi Le, Computational Biology, UCLA, contributing to developing code and time series analysis. Many individuals were instrumental in this research, including Dr. Thomas W. Gillespie, Professor of Geography, UCLA, Dr. Elsa M. Ordway, Assistant Professor of Ecology & Evolutionary Biology, UCLA, Dr. E. Natasha Stavros, Ball Aerospace, Dr. Steven J. Steinberg, Geographic Information Officer (GIO) for Los Angeles County California and Adjunct Professor with the MS GIScience program at CSU Long Beach, and Mr. Justin Robertson, Senior Planner at Los Angeles County Department of Public Health. Mr. Andrew Niehaus, Geographic Information Science M.S., Clark University, and Ms. Sarah Hughes, Geographic Information Science M.S., Clark University, provided additional assistance with coding and implementing the interactive map application. 
 
 # References
 Alonzo, M., Bookhagen, B. and Roberts, D.A., 2014. Urban tree species mapping using hyperspectral and LiDAR data fusion. Remote Sensing of Environment, 148, pp.70-83.
+
 Alonzo, M., McFadden, J.P., Nowak, D.J. and Roberts, D.A., 2016. Mapping urban forest structure and function using hyperspectral imagery and LiDAR data. Urban forestry & urban greening, 17, pp.135-147.
+
 Alonzo, M., Roth, K. and Roberts, D., 2013. Identifying Santa Barbara's urban tree species from AVIRIS imagery using canonical discriminant analysis. Remote Sensing Letters, 4(5), pp.513-521.
+
 Anderson, C.B., 2018. The CCB-ID approach to tree species mapping with airborne imaging spectroscopy. PeerJ, 6, p.e5666.
+
 Audebert, N., Le Saux, B. and Lefèvre, S., 2018. Beyond RGB: Very high resolution urban remote sensing with multimodal deep networks. ISPRS Journal of Photogrammetry and Remote Sensing, 140, pp.20-32.
+
 Aval, J., Demuynck, J., Zenou, E., Fabre, S., Sheeren, D., Fauvel, M., Adeline, K. and Briottet, X., 2018. Detection of individual trees in urban alignment from airborne data and contextual information: A marked point process approach. ISPRS Journal of Photogrammetry and Remote Sensing, 146, pp.197-210.
+
 Avolio, M.L., Pataki, D.E., Gillespie, T.W., Jenerette, G.D., McCarthy, H.R., Pincetl, S. and Weller Clarke, L., 2015. Tree diversity in southern California's urban forest: the interacting roles of social and environmental variables. Frontiers in Ecology and Evolution, 3, p.73.
+
 Belgiu, M. and Drăguţ, L., 2016. Random forest in remote sensing: A review of applications and future directions. ISPRS Journal of Photogrammetry and Remote Sensing, 114, pp.24-31.
+
 Bioucas-Dias, J.M., Plaza, A., Dobigeon, N., Parente, M., Du, Q., Gader, P. and Chanussot, J., 2012. Hyperspectral unmixing overview: Geometrical, statistical, and sparse regression-based approaches. IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing, 5(2), pp.354-379.
+
 Bodnaruk, E.W., Kroll, C.N., Yang, Y., Hirabayashi, S., Nowak, D.J. and Endreny, T.A., 2017. Where to plant urban trees? A spatially explicit methodology to explore ecosystem service tradeoffs. Landscape and Urban Planning, 157, pp.457-467.
+
 Bradley, B.A., 2014. Remote detection of invasive plants: a review of spectral, textural and phenological approaches. Biological Invasions, 16(7), pp.1411-1425.
 Branson, S., Wegner, J.D., Hall, D., Lang, N., Schindler, K. and Perona, P., 2018. From Google Maps to a fine-grained catalog of street trees. ISPRS Journal of Photogrammetry and Remote Sensing, 135, pp.13-30.
+
 Degerickx, J., Roberts, D.A., McFadden, J.P., Hermy, M. and Somers, B., 2018. Urban tree health assessment using airborne hyperspectral and LiDAR imagery. Journal of Selected Topics in Applied Earth Observations and Remote Sensing, 73, pp.26-38.
+
 Dian, Y., Pang, Y., Dong, Y. and Li, Z., 2016. Urban tree species mapping using airborne LiDAR and hyperspectral data. Journal of the Indian Society of Remote Sensing, 44(4), pp.595-603.
+
 Elgendy, M., 2020. Deep learning for vision systems. Simon and Schuster.
+
 Fang, F., McNeil, B.E., Warner, T.A., Maxwell, A.E., Dahle, G.A., Eutsler, E. and Li, J., 2020. Discriminating tree species at different taxonomic levels using multi-temporal WorldView-3 imagery in Washington DC, USA. Remote Sensing of Environment, 246, pp.111811.
+
 Fassnacht, F.E., Neumann, C., Förster, M., Buddenbaum, H., Ghosh, A., Clasen, A., Joshi, P.K. and Koch, B., 2014. Comparison of feature reduction algorithms for classifying tree species with hyperspectral data on three central European test sites. IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing, 7(6), pp.2547-2561.
+
 Fassnacht, F.E., Latifi, H., Stereńczak, K., Modzelewska, A., Lefsky, M., Waser, L.T., Straub, C. and Ghosh, A., 2016. Review of studies on tree species classification from remotely sensed data. Remote Sensing of Environment, 186, pp.64-87.
+
 Ferreira, M.P., Zortea, M., Zanotta, D.C., Shimabukuro, Y.E. and de Souza Filho, C.R., 2016. Mapping tree species in tropical seasonal semi-deciduous forests with hyperspectral and multispectral data. Remote Sensing of Environment, 179, pp.66-78.
+
 Fricker, G.A., Ventura, J.D., Wolf, J.A., North, M.P., Davis, F.W. and Franklin, J., 2019. A convolutional neural network classifier identifies tree species in mixed-conifer forest from hyperspectral imagery. Remote Sensing, 11(19), p.2326.
+
 Gillespie, T.W., de Goede, J., Aguilar, L., Jenerette, G.D., Fricker, G.A., Avolio, M.L., Pincetl, S., Johnston, T., Clarke, L.W. and Pataki, D.E., 2017. Predicting tree species richness in urban forests. Urban Ecosystems, 20(4), pp.839-849.
+
 Hartling, S., Sagan, V., Sidike, P., Maimaitijiang, M. and Carron, J., 2019. Urban tree species classification using a WorldView-2/3 and LiDAR data fusion approach and deep learning. Sensors, 19(6), p.1284.
+
 Hughes, G., 1968. On the mean accuracy of statistical pattern recognizers. IEEE transactions on information theory, 14(1), pp.55-63.
+
 Immitzer, M., Atzberger, C. and Koukal, T., 2012. Tree species classification with random forest using very high spatial resolution 8-band WorldView-2 satellite data. Remote Sensing, 4(9), pp.2661-2693.
+
 Immitzer, M., Vuolo, F. and Atzberger, C., 2016. First experience with Sentinel-2 data for crop and tree species classifications in central Europe. Remote Sensing, 8(3), p.166.
+
 Jensen, R.R., Hardin, P.J. and Hardin, A.J., 2012. Classification of urban tree species using hyperspectral imagery. Geocarto International, 27(5), pp.443-458.
 Jombo, S., Adam, E. and Odindi, J., 2021. Classification of tree species in a heterogeneous urban environment using object-based ensemble analysis and World View-2 satellite imagery. Applied Geomatics, 13(3), pp.373-387.
+
 Jombo, S., Adam, E. and Tesfamichael, S., 2022. Classification of urban tree species using LiDAR data and WorldView-2 satellite imagery in a heterogeneous environment. Geocarto International, 37(25), pp.9943-9966.
+
 Li, H., Lee, W.S., Wang, K., Ehsani, R. and Yang, C., 2014. ‘Extended spectral angle mapping (ESAM)’for citrus greening disease detection using airborne hyperspectral imaging. Precision Agriculture, 15(2), pp.162-183.
+
 Li, W., Liu, H., Wang, Y., Li, Z., Jia, Y. and Gui, G., 2019. Deep learning-based classification methods for remote sensing images in urban built-up areas. Ieee Access, 7, pp.36274-36284.
+
 Lin, Y. and Hyyppä, J., 2016. A comprehensive but efficient framework of proposing and validating feature parameters from airborne LiDAR data for tree species classification. International journal of applied earth observation and geoinformation, 46, pp.45-55.
+
 Liu, L., Coops, N.C., Aven, N.W. and Pang, Y., 2017. Mapping urban tree species using integrated airborne hyperspectral and LiDAR remote sensing data. Remote Sensing of Environment, 200, pp.170-182.
+
 Love, N.L., Nguyen, V., Pawlak, C., Pineda, A., Reimer, J.L., Yost, J.M., Fricker, G.A., Ventura, J.D., Doremus, J.M., Crow, T. and Ritter, M.K., 2022. Diversity and structure in California’s urban forest: What over six million data points tell us about one of the world's largest urban forests. Urban Forestry & Urban Greening, 74, p.127679.
+
 Ma, Q., Lin, J., Ju, Y., Li, W., Liang, L. and Guo, Q., 2023. Individual structure mapping over six million trees for New York City USA. Scientific Data, 10(1), p.102.
+
 Marrs, J. and Ni-Meister, W., 2019. Machine learning techniques for tree species classification using co-registered LiDAR and hyperspectral data. Remote Sensing, 11(7), p.819.
+
 Martins, G.B., La Rosa, L.E.C., Happ, P.N., Coelho Filho, L.C.T., Santos, C.J.F., Feitosa, R.Q. and Ferreira, M.P., 2021. Deep learning-based tree species mapping in a highly diverse tropical urban setting. Urban Forestry & Urban Greening, 64, p.127241.
+
 Mesquita, M.R., Agarwal, S., de Morais Lima, L.H.G., Soares, M.R.A., Barbosa, D.B.E.S., Silva, V.C., Werneck, G.L. and Costa, C.H.N., 2022. The use of geotechnologies for the identification of the urban flora in the city of Teresina, Brazil. Urban Ecosystems, pp.1-12.
+
 Neyns, R. and Canters, F., 2022. Mapping of urban vegetation with high-resolution remote sensing: A review. Remote sensing, 14(4), p.1031.
 Ossola, A., Hoeppner, M.J., Burley, H.M., Gallagher, R.V., Beaumont, L.J. and Leishman, M.R., 2020. The Global Urban Tree Inventory: A database of the diverse tree flora that inhabits the world’s cities. Global Ecology and Biogeography, 29(11), pp.1907-1914.
+
 Pleșoianu, A.I., Stupariu, M.S., Șandric, I., Pătru-Stupariu, I. and Drăguț, L., 2020. Individual tree-crown detection and species classification in very high-resolution remote sensing imagery using a deep learning ensemble model. Remote Sensing, 12(15), p.2426.
+
 Pretzsch, H., Biber, P., Uhl, E., Dahlhausen, J., Schütze, G., Perkins, D., Rötzer, T., Caldentey, J., Koike, T., Con, T.V. and Chavanne, A., 2017. Climate change accelerates growth of urban trees in metropolises worldwide. Scientific reports, 7(1), pp.1-10.
+
 Pu, R. and Liu, D., 2011. Segmented canonical discriminant analysis of in situ hyperspectral data for identifying 13 urban tree species. International Journal of Remote Sensing, 32(8), pp.2207-2226.
+
 Pu, R. and Landry, S., 2012. A comparative analysis of high spatial resolution IKONOS and WorldView-2 imagery for mapping urban tree species. Remote Sensing of Environment, 124, pp.516-533.
+
 Pu, R., Landry, S. and Yu, Q., 2018. Assessing the potential of multi-seasonal high resolution Pléiades satellite imagery for mapping urban tree species. International Journal of Applied Earth Observation and Geoinformation, 71, pp.144-158.
+
 Pu, R., 2021. Mapping tree species using advanced remote sensing technologies: a state-of-the-art review and perspective. Journal of Remote Sensing, 2021, p.26.
 Stereńczak, K., Laurin, G.V., Chirici, G., Coomes, D.A., Dalponte, M., Latifi, H. and Puletti, N., 2020. Global airborne laser scanning data providers database (GlobALS)—A new tool for monitoring ecosystems and biodiversity. Remote Sensing, 12(11), p.1877.
+
 Stoker, J. and Miller, B., 2022. The accuracy and consistency of 3D elevation program data: a systematic analysis. Remote Sensing, 14(4), p.940.
+
 Wang, Z., Fan, C. and Xian, M., 2021. Application and evaluation of a deep learning architecture to urban tree canopy mapping. Remote Sensing, 13(9), p.1749.
+
 Waters, E., Oghaz, M.M. and Saheer, L.B., 2021. Urban tree species classification using aerial imagery. arXiv preprint arXiv:2107.03182.
+
 Yang, G., Zhao, Y., Li, B., Ma, Y., Li, R., Jing, J. and Dian, Y., 2019. Tree species classification by employing multiple features acquired from integrated sensors. Journal of Sensors, 2019.
+
 Yang M, Zhou X, Liu Z, Li P, Tang J, Xie B, Peng C. A review of general methods for quantifying and estimating urban trees and biomass. Forests. 2022 13(4). p.616.
+
 Zhang, C. and Qiu, F., 2012. Mapping individual tree species in an urban forest using airborne LiDAR data and hyperspectral imagery. Photogrammetric Engineering & Remote Sensing, 78(10), pp.1079-1087.
+
 Zhang, C., Sargent, I., Pan, X., Li, H., Gardiner, A., Hare, J. and Atkinson, P.M., 2018. An object-based convolutional neural network (OCNN) for urban land use classification. Remote sensing of environment, 216, pp.57-70.
 Zhang, R., Li, Q., Duan, K.F., You, S.C., Zhang, T., Liu, K. and Gan, Y.H., 2020. PRECISE CLASSIFICATION OF FOREST SPECIES BASED ON MULTI-SOURCE REMOTE-SENSING IMAGES. APPLIED ECOLOGY AND ENVIRONMENTAL RESEARCH, 18(2), pp.3659-3681.
 Zhou, J., Qin, J., Gao, K. and Leng, H., 2016. SVM-based soft classification of urban tree species using very high-spatial resolution remote-sensing imagery. International Journal of Remote Sensing, 37(11), pp.2541-2559.
